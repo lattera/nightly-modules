@@ -11,6 +11,9 @@ class FreeBSD_Source:
         self.commit_msg = "[automated] Merge in " + self.upstream_remote + "/" + self.upstream_branch
         self.push_to = "origin"
 
+    def Describe(self):
+        return "Source"
+
     def Run(self, job, config):
         curdir = os.getcwd()
         newdir = subprocess.check_output(["zfs", "get", "-H", "-ovalue", "mountpoint", self.dataset]).strip()

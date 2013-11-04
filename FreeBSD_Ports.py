@@ -7,6 +7,9 @@ class FreeBSD_Ports:
         self.portsdir = "/usr/ports"
         self.jobs = 7
 
+    def Describe(self):
+        return "Ports Tree"
+
     def Run(self, job, config):
         curdir = os.getcwd()
         os.chdir(self.portsdir)

@@ -9,6 +9,9 @@ class FreeBSD_Release:
         self.kernel = "SEC"
         self.local_destdir = "/src/release/pub/FreeBSD/snapshots/amd64/amd64/11.0-CURRENT"
 
+    def Describe(self):
+        return "ISO/memstick"
+
     def Run(self, job, config):
         curdir = os.getcwd()
         os.chdir("/usr/src")

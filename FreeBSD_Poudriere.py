@@ -14,6 +14,9 @@ class FreeBSD_Poudriere:
         jail["version"] = "11.0-CURRENT"
         self.jails.append(jail)
 
+    def Describe(self):
+        return "Poudriere"
+
     def Run(self, job, config):
         with job.GetLogfile(config) as logfile:
             for jail in self.jails:
@@ -58,7 +61,7 @@ class FreeBSD_Poudriere:
                     "sudo",
                     "rsync"
                     "-a",
-                    self.poudriere_dir + "/data/packages" + jail["name"] + "-" + jail["ports"] + "/",
+                    self.poudriere_dir + "/data/packages/" + jail["name"] + "-" + jail["ports"] + "/",
                     jail["syncdir"]
                 ], stdout=logfile, stderr=subprocess.STDOUT)
                 if status != 0:
