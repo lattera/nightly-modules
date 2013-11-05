@@ -3,7 +3,7 @@ import sys
 import shutil
 import subprocess
 
-class FreeBSD_Release:
+class Release:
     def __init__(self):
         self.jobs = 7
         self.kernel = "SEC"

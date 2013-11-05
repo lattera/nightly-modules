@@ -2,7 +2,7 @@ import os
 import sys
 import subprocess
 
-class FreeBSD_Source:
+class Source:
     def __init__(self):
         self.dataset = "tank/src/freebsd"
         self.upstream_remote = "upstream-github"

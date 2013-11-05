@@ -2,7 +2,7 @@ import os
 import sys
 import subprocess
 
-class FreeBSD_Ports:
+class Ports:
     def __init__(self):
         self.portsdir = "/usr/ports"
         self.jobs = 7

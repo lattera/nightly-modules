@@ -1,6 +1,6 @@
 import subprocess
 
-class FreeBSD_Poudriere:
+class Poudriere:
     def __init__(self):
         self.jails = list()
         self.poudriere_dir = "/tank/poudriere/jails"
