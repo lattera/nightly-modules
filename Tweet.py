@@ -4,6 +4,7 @@ import subprocess
 class Tweet:
     def __init__(self):
         self.completed = list()
+        self.options = dict()
         pass
 
     def _tweet_status(self, message):
@@ -18,6 +19,10 @@ class Tweet:
 
         self.completed.append(job.name)
 
+        prefix = "#FreeBSD #ASLR automated nightly build: "
+        if "prefix" in self.options:
+            prefix = self.options["prefix"]
+
         description = job.name
         if "Describe" in dir(job.instance) and callable(getattr(job.instance, "Describe")):
             description = job.instance.Describe()
@@ -30,9 +35,10 @@ class Tweet:
         elif job.status == "false":
             status = "Failed"
 
-        self._tweet_status("#FreeBSD #ASLR automated nightly build: Step[" + description + "]: " + status)
+        self._tweet_status(prefix + " Step[" + description + "]: " + status)
 
     def Run(self, job, config):
+        self.options = job.options
         for dep in job.dependencies:
             self._recurse_job(dep)
 
