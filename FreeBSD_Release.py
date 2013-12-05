@@ -39,6 +39,9 @@ class Release:
                 if not branch["succeeded"]:
                     continue
 
+                if "skip" in branch and branch["skip"]:
+                    continue
+
                 if not srcjob.instance.checkout_branch(branch["local-branch"], logfile):
                     succeeded = False
                     continue
@@ -63,6 +66,7 @@ class Release:
                     for filename in os.listdir("/usr/obj/usr/src/release"):
                         if len(filename) > 3 and filename[-3:] in ["txz", "iso"]:
                             shutil.copy("/usr/obj/usr/src/release/" + filename, branch["destdir"])
+                os.chdir(newdir)
 
         os.chdir(curdir)
         return True

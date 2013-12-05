@@ -35,6 +35,10 @@ class Source:
 
         with job.GetLogfile(config) as logfile:
             for branch in job.options["branches"]:
+                if "skip" in branch and branch["skip"]:
+                    branch["succeeded"] = True
+                    continue
+
                 branch["succeeded"] = False
                 if not self.fetch_upstream(branch["upstream"], logfile):
                     continue
